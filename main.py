@@ -14,11 +14,10 @@ resp = requests.get(url, params=params)
 
 @bot.message_handler(commands=['start'])
 def handle_command_start(message):
+    keyboard = types.InlineKeyboardMarkup()
     button_btc = types.InlineKeyboardButton('BTC', callback_data='button_btc')
     button_eth = types.InlineKeyboardButton('ETH', callback_data='button_eth')
-    keyboard = types.InlineKeyboardMarkup()
-    keyboard.add(button_btc)
-    keyboard.add(button_eth)
+    keyboard.row(button_btc, button_eth)
 
     bot.send_message(message.from_user.id, 'Курс чего вы хотите узнать?', reply_markup=keyboard)
 
